@@ -1,15 +1,403 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infográfico: O Poder dos Arquétipos no Branding</title>
+    <title>Painel de Análise Estratégica - Amorim Coutinho</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Estilos e scripts omitidos por brevidade, mas no real uso deve conter tudo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-link.active {
+            color: #0d9488;
+            font-weight: 600;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 320px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+    </style>
 </head>
-<body>
-    <!-- Todo o conteúdo do site aqui, conforme enviado na mensagem -->
+<body class="bg-slate-50 text-slate-800">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-slate-900">Análise Estratégica <span class="text-teal-600">Amorim Coutinho</span></h1>
+            <ul class="hidden md:flex space-x-6 text-slate-600 font-medium">
+                <li><a href="#diagnostico" class="nav-link hover:text-teal-600 transition-colors">Diagnóstico</a></li>
+                <li><a href="#reputacao" class="nav-link hover:text-teal-600 transition-colors">Reputação</a></li>
+                <li><a href="#oportunidades" class="nav-link hover:text-teal-600 transition-colors">Oportunidades</a></li>
+                <li><a href="#swot" class="nav-link hover:text-teal-600 transition-colors">SWOT</a></li>
+                <li><a href="#plano-acao" class="nav-link hover:text-teal-600 transition-colors">Plano de Ação</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-12">
+
+        <section id="diagnostico" class="mb-16 scroll-mt-24 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Diagnóstico Rápido</h2>
+            <p class="max-w-3xl mx-auto text-slate-600 mb-10">
+                Esta seção apresenta os indicadores-chave que definem o cenário atual da Amorim Coutinho. Cada cartão destaca um ponto crítico extraído da análise, oferecendo um panorama imediato dos principais desafios e da performance da empresa. O objetivo é fornecer um resumo executivo dos problemas centrais que serão detalhados nas seções seguintes.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500">
+                    <h3 class="font-bold text-lg mb-2">Reputação Crítica</h3>
+                    <p class="text-5xl font-bold text-red-500 mb-2">3.7<span class="text-2xl">/10</span></p>
+                    <p class="text-slate-500">Nota média no Reclame Aqui, classificada como \"Não Recomendada\", minando a confiança do consumidor.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-amber-500">
+                    <h3 class="font-bold text-lg mb-2">Comunicação Genérica</h3>
+                    <p class="text-5xl font-bold text-amber-500 mb-2">45m²</p>
+                    <p class="text-slate-500">Diferenciais como a metragem superior dos apartamentos MCMV não são explorados, resultando em percepção de baixo valor.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+                    <h3 class="font-bold text-lg mb-2">Vendas Instáveis</h3>
+                    <p class="text-3xl font-bold text-blue-500 mb-2 leading-tight">Quedas de Vendas<br>entre Lançamentos</p>
+                    <p class="text-slate-500 mt-2">Dependência de picos de lançamento, indicando um funil de marketing e nutrição de leads ineficaz.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reputacao" class="mb-16 scroll-mt-24">
+             <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Análise de Reputação: O Elo Fraco</h2>
+                <p class="max-w-3xl mx-auto text-slate-600 mb-10">
+                    A reputação online é um dos ativos mais importantes para uma construtora. Esta seção detalha a performance da Amorim Coutinho na plataforma Reclame Aqui, o principal termômetro da satisfação do cliente no Brasil. Os gráficos abaixo visualizam a discrepância entre responder e resolver problemas, e identificam as principais fontes de insatisfação do cliente.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-4">Taxa de Resolução de Problemas</h3>
+                    <div class="chart-container">
+                        <canvas id="reputationChart"></canvas>
+                    </div>
+                     <p class="text-center text-slate-500 mt-4">Apesar de 100% das reclamações serem respondidas, apenas 25% são efetivamente resolvidas, indicando um processo de atendimento superficial que não soluciona a dor do cliente.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-center mb-4">Principais Motivos de Reclamação</h3>
+                     <div class="chart-container">
+                        <canvas id="complaintsChart"></canvas>
+                    </div>
+                    <p class="text-center text-slate-500 mt-4">O \"Atraso na entrega\" e \"Problemas gerais de construtoras\" dominam as queixas, sugerindo que a empresa não se diferencia na gestão de dores comuns do setor.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="oportunidades" class="mb-16 scroll-mt-24">
+             <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Oportunidades Ocultas: O Valor Não Comunicado</h2>
+                <p class="max-w-3xl mx-auto text-slate-600 mb-10">
+                    Mesmo em um cenário desafiador, existem forças e oportunidades subutilizadas. A principal delas é o diferencial de produto nos apartamentos do programa Minha Casa Minha Vida. O gráfico a seguir compara a metragem dos imóveis da Amorim Coutinho com a média de mercados competitivos e o novo padrão mínimo nacional, revelando uma vantagem competitiva clara que não está sendo comunicada ao mercado.
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold text-center mb-6">Comparativo de Metragem: Apartamentos MCMV</h3>
+                <div class="chart-container max-w-4xl">
+                    <canvas id="sizeComparisonChart"></canvas>
+                </div>
+                <p class="text-center text-slate-500 mt-6">Os imóveis da Amorim Coutinho (44-45m²) superam tanto o novo padrão mínimo quanto a média de mercados como São Paulo, um argumento de venda poderoso e tangível.</p>
+            </div>
+        </section>
+
+        <section id="swot" class="mb-16 scroll-mt-24">
+             <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Análise SWOT Interativa</h2>
+                <p class="max-w-3xl mx-auto text-slate-600 mb-10">
+                    A matriz SWOT (Forças, Fraquezas, Oportunidades e Ameaças) consolida o diagnóstico estratégico. Clique em cada quadrante para explorar os pontos detalhados da análise, entendendo como os fatores internos e externos se interligam e influenciam o posicionamento da marca.
+                </p>
+            </div>
+            <div id="swot-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            </div>
+        </section>
+
+        <section id="plano-acao" class="scroll-mt-24">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Plano de Ação Estratégico</h2>
+                <p class="max-w-3xl mx-auto text-slate-600 mb-10">
+                    Com base na análise completa, esta seção apresenta as recomendações estratégicas para superar os desafios e capitalizar as oportunidades. As ações estão organizadas em três pilares fundamentais. Clique em cada pilar para ver as diretrizes e os próximos passos práticos para a V4 Company e a Amorim Coutinho.
+                </p>
+            </div>
+            <div id="accordion-container" class="max-w-4xl mx-auto">
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-slate-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-4 text-center text-slate-400">
+            <p>&copy; 2025 Painel de Análise Estratégica. Gerado para fins de consultoria.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const reputationData = {
+                labels: ['Não Resolvido', 'Resolvido'],
+                datasets: [{
+                    data: [75, 25],
+                    backgroundColor: ['#f87171', '#34d399'],
+                    borderColor: '#f9fafb',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            };
+
+            const complaintsData = {
+                labels: ['Problemas Gerais de Construtoras', 'Atraso na Entrega'],
+                datasets: [{
+                    label: '% de Reclamações',
+                    data: [72.22, 26.39],
+                    backgroundColor: ['#fb923c', '#60a5fa'],
+                    borderColor: ['#f97316', '#3b82f6'],
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            };
+
+            const sizeComparisonData = {
+                labels: ['Média MCMV (SP)', 'Novo Mínimo Nacional', 'Amorim Coutinho (Nordeste)', 'Amorim Coutinho (SP)'],
+                datasets: [{
+                    label: 'Metragem (m²)',
+                    data: [30, 41.5, 44, 45.48],
+                    backgroundColor: [
+                        'rgba(239, 68, 68, 0.6)',
+                        'rgba(245, 158, 11, 0.6)',
+                        'rgba(16, 185, 129, 0.6)',
+                        'rgba(13, 148, 136, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgb(239, 68, 68)',
+                        'rgb(245, 158, 11)',
+                        'rgb(16, 185, 129)',
+                        'rgb(13, 148, 136)'
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 4
+                }]
+            };
+
+            const swotData = [
+                { title: 'Forças', icon: '💪', color: 'green', items: ['Potencial diferencial no tamanho dos apartamentos MCMV (44-45m²).', 'Portfólio de empreendimentos em diversas localidades (SP, RN, MA).', 'Possível foco em lazer inferido por nomes como "Be Life Club".', 'Website com informações básicas e lista de empreendimentos.'] },
+                { title: 'Fraquezas', icon: '⚠️', color: 'red', items: ['Reputação "Não Recomendada" no Reclame Aqui (taxa de resolução de 25%). Ponto crítico.', 'Quedas de vendas significativas entre os períodos de lançamento.', 'Comunicação percebida como genérica e que não explora diferenciais.', 'Reclamações antigas (4 anos) sem resposta efetiva.', 'Presença digital em canais chave (Instagram, etc.) subutilizada ou mal gerenciada.'] },
+                { title: 'Oportunidades', icon: '🚀', color: 'blue', items: ['Comunicar agressivamente os diferenciais já existentes (metragem, lazer).', 'Explorar o mercado aquecido de São Luís com uma proposta de valor clara.', 'Adotar marketing de conteúdo evergreen para estabilizar o fluxo de leads.', 'Usar a crise de reputação como catalisador para melhorias reais e comunicá-las.', 'Alavancar tendências da construção: sustentabilidade, industrialização e IA em marketing.'] },
+                { title: 'Ameaças', icon: '⚡️', color: 'orange', items: ['Concorrência acirrada nas praças de atuação.', 'Impacto da taxa Selic no crédito imobiliário.', 'Alta sensibilidade do público a problemas de qualidade, amplificada por redes sociais.', 'Escassez de mão de obra qualificada e incertezas da reforma tributária.', 'Risco de "comoditização" se a empresa não comunicar diferenciais claros.'] }
+            ];
+
+            const actionPlanData = [
+                {
+                    title: 'Branding e Melhoria da Reputação',
+                    content: [
+                        '<strong>Ação Prioritária:</strong> Desenvolver e implementar um plano de recuperação de reputação no Reclame Aqui, com meta de alcançar classificação "Bom" ou "Ótimo".',
+                        '<strong>Comunicação Transparente:</strong> Criar um canal para comunicar honestamente os esforços de melhoria nos processos e na qualidade.',
+                        '<strong>Revisão da Proposta de Valor:</strong> Garantir que os valores de "ética e rigor construtivo" sejam refletidos na experiência real do cliente.'
+                    ]
+                },
+                {
+                    title: 'Comunicação e Copywriting Especializado',
+                    content: [
+                        '<strong>Foco em Benefícios:</strong> Traduzir características (ex: 44m²) em benefícios tangíveis (ex: "mais espaço e conforto para sua família").',
+                        '<strong>Narrativas Específicas:</strong> Desenvolver propostas de valor únicas para cada empreendimento, destacando o que o torna especial.',
+                        '<strong>Linguagem Conectada:</strong> Adaptar o tom de voz para ressoar com o público-alvo de cada segmento (MCMV, médio padrão).',
+                        '<strong>Prova Social Estratégica:</strong> Coletar e divulgar depoimentos de clientes satisfeitos assim que a reputação melhorar.'
+                    ]
+                },
+                {
+                    title: 'Performance de Vendas e Engajamento Contínuo',
+                    content: [
+                        '<strong>Implementação de Funil de Vendas:</strong> Estruturar um funil completo com foco em geração e nutrição de leads com conteúdo evergreen via CRM.',
+                        '<strong>Campanhas de "Sustentação":</strong> Criar campanhas de marketing específicas para unidades remanescentes de projetos já lançados.',
+                        '<strong>Programa de Relacionamento:</strong> Estabelecer um programa para clientes atuais, incentivando indicações e identificando oportunidades de futuras compras.'
+                    ]
+                }
+            ];
+
+            function renderCharts() {
+                const repCtx = document.getElementById('reputationChart');
+                if(repCtx) {
+                    new Chart(repCtx, {
+                        type: 'doughnut',
+                        data: reputationData,
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { position: 'bottom' },
+                                title: { display: false }
+                            },
+                            cutout: '60%'
+                        }
+                    });
+                }
+                
+                const compCtx = document.getElementById('complaintsChart');
+                if(compCtx) {
+                    new Chart(compCtx, {
+                        type: 'bar',
+                        data: complaintsData,
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            indexAxis: 'y',
+                            plugins: {
+                                legend: { display: false },
+                                title: { display: false }
+                            },
+                            scales: {
+                                x: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: '%'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                const sizeCtx = document.getElementById('sizeComparisonChart');
+                if(sizeCtx) {
+                    new Chart(sizeCtx, {
+                        type: 'bar',
+                        data: sizeComparisonData,
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false },
+                                title: { display: false },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            return `${context.dataset.label}: ${context.raw} m²`;
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Metragem (m²)'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+            
+            function renderSwot() {
+                const container = document.getElementById('swot-container');
+                if (!container) return;
+                
+                swotData.forEach(quadrant => {
+                    const div = document.createElement('div');
+                    div.className = `bg-white p-6 rounded-lg shadow-md border-t-8 border-${quadrant.color}-500 transition-all duration-300 cursor-pointer hover:shadow-xl`;
+                    let itemsHtml = quadrant.items.map(item => `<li class="text-slate-600 mb-2">${item}</li>`).join('');
+                    
+                    div.innerHTML = `
+                        <h3 class="text-2xl font-bold mb-4 flex items-center">
+                            <span class="text-3xl mr-3">${quadrant.icon}</span> ${quadrant.title}
+                        </h3>
+                        <ul class="list-disc list-inside space-y-2 text-left">${itemsHtml}</ul>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+
+            function renderActionPlan() {
+                const container = document.getElementById('accordion-container');
+                if (!container) return;
+
+                actionPlanData.forEach((item, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'border border-slate-200 rounded-lg mb-2 bg-white';
+                    div.innerHTML = `
+                        <button class="accordion-button w-full text-left p-4 font-semibold text-slate-800 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                            <span>${item.title}</span>
+                            <span class="accordion-icon text-teal-600 font-bold text-xl">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4 border-t border-slate-200 text-slate-600">
+                                <ul class="list-disc list-inside space-y-3">
+                                    ${item.content.map(point => `<li>${point}</li>`).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+
+                container.addEventListener('click', function(e) {
+                    const button = e.target.closest('.accordion-button');
+                    if (button) {
+                        const content = button.nextElementSibling;
+                        const icon = button.querySelector('.accordion-icon');
+                        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+                        document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = '0px');
+                        document.querySelectorAll('.accordion-icon').forEach(i => i.textContent = '+');
+                        
+                        if (!isOpen) {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                            icon.textContent = '-';
+                        }
+                    }
+                });
+            }
+
+            function setupNavHighlighting() {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('nav a.nav-link');
+                
+                window.addEventListener('scroll', () => {
+                    let current = '';
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        if (pageYOffset >= sectionTop - 150) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').includes(current)) {
+                            link.classList.add('active');
+                        }
+                    });
+                });
+            }
+
+            renderCharts();
+            renderSwot();
+            renderActionPlan();
+            setupNavHighlighting();
+        });
+    </script>
 </body>
 </html>
+
